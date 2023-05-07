@@ -20,7 +20,7 @@ void setup() {
   cloud[1] = new Cloud(width, 200, -.75);
   cloud[2] = new Cloud(width, 130, -.4);
   cloud[3] = new Cloud(width, 100, .82);
-  house = new House(1200,600);
+  house = new House(1200,450);
 }
 void draw() {
   background(90, 100, 190);
