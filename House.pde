@@ -12,7 +12,7 @@ public class House {
   public void drawHouse() {
     pushMatrix();
     float middleSec =coordinateX - ((coordinateX - (coordinateX-200))/2);
-    rect(middleSec, coordinateY+150,150,90);
+    rect(middleSec, coordinateY+45,150,90);
     triangle(coordinateX, coordinateY, coordinateX - 200, coordinateY, coordinateX -
       (coordinateX -(coordinateX-200))/2, coordinateY-120);
       
