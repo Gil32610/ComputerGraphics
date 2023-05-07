@@ -16,10 +16,10 @@ void setup() {
   translateX = .0;
   size(1280, 720, P3D);
   rectMode(CENTER);
-  cloud[0] = new Cloud(width, 45, .6);
-  cloud[1] = new Cloud(width, 200, -.75);
-  cloud[2] = new Cloud(width, 130, -.4);
-  cloud[3] = new Cloud(width, 100, .82);
+  cloud[0] = new Cloud(width, 45, .6, 10);
+  cloud[1] = new Cloud(width, 200, -.75,20);
+  cloud[2] = new Cloud(width, 130, -.4,40);
+  cloud[3] = new Cloud(width, 100, .82,25);
   house = new House(1200,450);
 }
 void draw() {
