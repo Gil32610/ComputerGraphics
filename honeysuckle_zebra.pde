@@ -25,6 +25,10 @@ void setup() {
 void draw() {
   background(90, 100, 190);
   printClouds(cloud);
+  pushMatrix();
+  stroke(0);
+  triangle(120, 300, 232, 80, 344, 300);
+  popMatrix();
 }
 
 public void printClouds(Cloud[] cloud) {
