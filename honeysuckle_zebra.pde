@@ -27,7 +27,7 @@ void draw() {
   printClouds(cloud);
   pushMatrix();
   stroke(0);
-  triangle(120, 300, 232, 80, 344, 300);
+  house.drawHouse();
   popMatrix();
 }
 
