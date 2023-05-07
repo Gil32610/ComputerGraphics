@@ -6,12 +6,13 @@ public class House {
     this.coordinateX = coordinateX;
     this.coordinateY = coordinateY;
     this.scale = 0.;
-    triangleMode(CENTER);
+    
   }
 
   public void drawHouse(){
-    triangle(coordinateX, coordinateY, x2, y2, x3, y3);
-
+    pushMatrix();
+    triangle(coordinateX, coordinateY, coordinateX+30, coordinateY+30, coordinateX -50, coordinateY-50);
+    popMatrix();
   }
   
   
