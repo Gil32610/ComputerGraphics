@@ -22,15 +22,12 @@ public class Cloud {
     popMatrix();
   }
   public void translateCloud() {
-    if (this.cooX +speed < 0) {
-      this.cooX = 1400;
-      
-      return;
-    } else{
-      this.cooY += cos(oscilate);
-      this.cooX = (Math.abs(this.cooX+speed)%1400);
+      this.cooY += cos(oscilate*1.5);
+      if(cooX+ speed<= -125){
+        this.cooX = 1400;
+      }
+      this.cooX = (this.cooX+speed)%1400;
       oscilate+=.01;
-    }
   }
   public float getX() {
     return this.cooX;
