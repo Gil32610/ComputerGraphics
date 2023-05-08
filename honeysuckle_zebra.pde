@@ -1,19 +1,15 @@
- //<>//
-float translateY;
-float translateX;
-int time;
-int m;
-int count;
-String current;
+PImage[] img; //<>// //<>//
 Cloud[] cloud = new Cloud[4];
 House house;
 
 
 void setup() {
-  count =0;
-  time = millis();
-  translateY = .0;
-  translateX = .0;
+  img = new PImage[5];
+  
+  for(int i = 0; i<img.length;i++){
+   img[i] = loadImage("Lonicera.png");
+  }
+
   size(1280, 720, P3D);
   rectMode(CENTER);
   cloud[0] = new Cloud(width, 45, .6, 10);
