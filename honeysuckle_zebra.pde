@@ -1,4 +1,4 @@
-PImage[] img; //<>// //<>// //<>// //<>// //<>//
+PImage[] img; //<>// //<>// //<>// //<>// //<>// //<>//
 Cloud[] cloud;
 House house;
 int cloudHeight;
@@ -20,24 +20,43 @@ void setup() {
   oscilate = 10;
   num = 2;
   cloud = cloudVector(num,cloudHeight,speed,oscilate);
-  house = new House(1200, 450);
+  house = new House(1200, 500);
   c = color(255,255,255);
+  
 }
 void draw() {
   background(90, 100, 190);
+  
+  pushMatrix();
+  noStroke();
+  c = color(230,200,2);
+  fill(c);
+  translate(80., 100);
+  rotate(frameCount / -100.0);
+  star(0, 0, 30, 70, 5); 
+  popMatrix();
+  
+  
   c = color(255,255,255);
   fill(c);
   printClouds(cloud);
   
-  pushMatrix();
-  stroke(0);
-  house.drawHouse();
-  popMatrix();
+  
+  
+  
+
   pushMatrix();
   c=color(12,170,45);
   fill(c);
   rect(width/2,650,width,140);
   popMatrix();
+  pushMatrix();
+  stroke(0);
+  house.drawHouse();
+  popMatrix();
+
+  
+  
 }
 
 public void printClouds(Cloud[] cloud) {
@@ -57,3 +76,18 @@ public void printClouds(Cloud[] cloud) {
     }
     return cloud;
   }
+  
+  void star(float x, float y, float radius1, float radius2, int npoints) {
+  float angle = TWO_PI / npoints;
+  float halfAngle = angle/2.0;
+  beginShape();
+  for (float a = 0; a < TWO_PI; a += angle) {
+    float sx = x + cos(a) * radius2;
+    float sy = y + sin(a) * radius2;
+    vertex(sx, sy);
+    sx = x + cos(a+halfAngle) * radius1;
+    sy = y + sin(a+halfAngle) * radius1;
+    vertex(sx, sy);
+  }
+  endShape(CLOSE);
+}
