@@ -19,43 +19,39 @@ void setup() {
   speed = .4;
   oscilate = 10;
   num = 2;
-  cloud = cloudVector(num,cloudHeight,speed,oscilate);
+  cloud = cloudVector(num, cloudHeight, speed, oscilate);
   house = new House(1200, 500);
-  c = color(255,255,255);
-  
+  c = color(255, 255, 255);
 }
 void draw() {
   background(90, 100, 190);
-  
+  noStroke();
+  fill(c);
+  ellipse(1100, 100, 180, 180);
   pushMatrix();
   noStroke();
-  c = color(230,200,2);
+  c = color(230, 200, 2);
   fill(c);
   translate(80., 100);
   rotate(frameCount / -100.0);
-  star(0, 0, 30, 70, 5); 
+  star(0, 0, 30, 70, 5);
   popMatrix();
-  
-  
-  c = color(255,255,255);
+
+
+  c = color(240, 230, 220);
   fill(c);
   printClouds(cloud);
-  
-  
-  
-  
 
   pushMatrix();
-  c=color(12,170,45);
+  c=color(12, 170, 45);
   fill(c);
-  rect(width/2,650,width,140);
+  rect(width/2, 650, width, 140);
   popMatrix();
   pushMatrix();
   stroke(0);
   house.drawHouse();
   popMatrix();
-
-  
+  c = color(255, 255, 255);
   
 }
 
@@ -66,18 +62,18 @@ public void printClouds(Cloud[] cloud) {
   }
 }
 
- public  Cloud[] cloudVector(int num, int cloudHeight, float speed, float oscilate) {
-    Cloud[] cloud = new Cloud[num];
-    for (int i =0; i<cloud.length; i++) {
-      cloud[i] = new Cloud(width, cloudHeight, speed, oscilate);
-      cloudHeight+= 10;
-      speed = i%2 == 0? -(speed +.15f):(float) Math.abs(speed + .15f);
-      oscilate+= 5;
-    }
-    return cloud;
+public  Cloud[] cloudVector(int num, int cloudHeight, float speed, float oscilate) {
+  Cloud[] cloud = new Cloud[num];
+  for (int i =0; i<cloud.length; i++) {
+    cloud[i] = new Cloud(width, cloudHeight, speed, oscilate);
+    cloudHeight+= 10;
+    speed = i%2 == 0? -(speed +.15f):(float) Math.abs(speed + .15f);
+    oscilate+= 5;
   }
-  
-  void star(float x, float y, float radius1, float radius2, int npoints) {
+  return cloud;
+}
+
+void star(float x, float y, float radius1, float radius2, int npoints) {
   float angle = TWO_PI / npoints;
   float halfAngle = angle/2.0;
   beginShape();
