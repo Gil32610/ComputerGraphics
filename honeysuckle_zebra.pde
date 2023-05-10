@@ -6,12 +6,14 @@ float speed;
 float oscilate;
 int num;
 color c;
+Doll d;
 void setup() {
   img = new PImage[5];
 
   for (int i = 0; i<img.length; i++) {
     img[i] = loadImage("Lonicera.png");
   }
+  d = new Doll(width,height);
 
   size(1280, 720, P3D);
   rectMode(CENTER);
@@ -25,6 +27,7 @@ void setup() {
 }
 void draw() {
   background(90, 100, 190);
+  d.drawDoll();
   noStroke();
   fill(c);
   ellipse(1100, 100, 180, 180);
