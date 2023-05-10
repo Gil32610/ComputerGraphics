@@ -16,17 +16,17 @@ class Doll {
     fill(200);
 
     // Cabeça
-    ellipse(width/2, height/4, 80, 80);
+    ellipse(cooX/2, cooY/4, 80, 80);
 
     // Corpo
-    rect(width/2 - 20, height/4 + 40, 40, 80);
+    rect(cooX/2 - 20, cooY/4 + 40, 40, 80);
 
     // Braços
-    line(width/2 - 40, height/4 + 60, width/2 - 80, height/4 + 100);
-    line(width/2 + 40, height/4 + 60, width/2 + 80, height/4 + 100);
+    line(cooX/2 - 40, cooY/4 + 60, cooX/2 - 80, cooY/4 + 100);
+    line(cooX/2 + 40, cooY/4 + 60, cooX/2 + 80, cooY/4 + 100);
 
     // Pernas
-    line(width/2 - 20, height/4 + 120, width/2 - 40, height/4 + 200);
-    line(width/2 + 20, height/4 + 120, width/2 + 40, height/4 + 200);
+    line(cooX/2 - 20, cooY/4 + 120, cooX/2 - 40, cooY/4 + 200);
+    line(cooX/2 + 20, cooY/4 + 120, cooX/2 + 40, cooY/4 + 200);
   }
 }
