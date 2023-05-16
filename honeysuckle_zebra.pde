@@ -25,7 +25,7 @@ void setup() {
   oscilate = 10;
   num = 2;
   cloud = cloudVector(num, cloudHeight, speed, oscilate);
-  house = new House(600, 500);
+  house = new House(1000, 550);
   c = color(255, 255, 255);
 }
 void draw() {
