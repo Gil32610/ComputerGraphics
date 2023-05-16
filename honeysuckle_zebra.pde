@@ -1,4 +1,4 @@
-PImage[] img; //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+PImage[] img; //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 Cloud[] cloud;
 House house;
 int cloudHeight;
@@ -34,31 +34,15 @@ void draw() {
   noStroke();
   fill(c);
   ellipse(1100, 100, 180, 180);
-  pushMatrix();
-  noStroke();
-  c = color(230, 200, 2);
-  fill(c);
-  translate(80., 100);
-  rotate(frameCount / -100.0);
-  star(0, 0, 30, 70, 5);
-  popMatrix();
-
-
+  starPlot();// desenha a estrela
   c = color(240, 230, 220);
   fill(c);
   printClouds(cloud);
 
-  pushMatrix();
-  c=color(12, 170, 45);
-  fill(c);
-  rect(width/2, 650, width, 140);
-  popMatrix();
-  pushMatrix();
-  stroke(0);
-  house.drawHouse();
-  popMatrix();
-  c = color(255, 255, 255);
+  grassPlot(); //desenha o gramado
+  housePlot(house); //desenha a casa
 
+  c = color(255, 255, 255);
   d.drawDoll();
   d.setXCoordinate(translate%width + 700);
   translate += 5 * cos(oscilate*.2);
@@ -96,4 +80,30 @@ void star(float x, float y, float radius1, float radius2, int npoints) {
     vertex(sx, sy);
   }
   endShape(CLOSE);
+}
+
+void housePlot(House house) {
+  pushMatrix();
+  stroke(0);
+  house.drawHouse();
+  popMatrix();
+}
+
+void grassPlot() {
+  pushMatrix();
+  c=color(12, 170, 45);
+  fill(c);
+  rect(width/2, 650, width, 140);
+  popMatrix();
+}
+
+void starPlot() {
+  pushMatrix();
+  noStroke();
+  c = color(230, 200, 2);
+  fill(c);
+  translate(80., 100);
+  rotate(frameCount / -100.0);
+  star(0, 0, 30, 70, 5);
+  popMatrix();
 }
