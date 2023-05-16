@@ -1,9 +1,10 @@
-PImage[] img; //<>// //<>// //<>// //<>// //<>// //<>//
+PImage[] img; //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 Cloud[] cloud;
 House house;
 int cloudHeight;
 float speed;
 float oscilate;
+float dollXCoordinate, translate;
 int num;
 color c;
 Doll d;
@@ -13,7 +14,9 @@ void setup() {
   for (int i = 0; i<img.length; i++) {
     img[i] = loadImage("Lonicera.png");
   }
-  d = new Doll(100,500);
+  dollXCoordinate = 100;
+  d = new Doll(dollXCoordinate, 500);
+  translate =.0;
 
   size(1280, 720, P3D);
   rectMode(CENTER);
@@ -27,7 +30,7 @@ void setup() {
 }
 void draw() {
   background(90, 100, 190);
-  
+
   noStroke();
   fill(c);
   ellipse(1100, 100, 180, 180);
@@ -55,9 +58,11 @@ void draw() {
   house.drawHouse();
   popMatrix();
   c = color(255, 255, 255);
-  
+
   d.drawDoll();
-  
+  d.setXCoordinate(translate%width + 700);
+  translate += 5 * cos(oscilate*.2);
+  oscilate+=.1;
 }
 
 public void printClouds(Cloud[] cloud) {

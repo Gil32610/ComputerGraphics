@@ -79,7 +79,7 @@ class Doll {
     //line(cooX/2 + 20, cooY/4 + 120, cooX/2 + 40, cooY/4 + 200);
   }
 
-  public void setXCoordinates(float cooX){
+  public void setXCoordinate(float cooX){
     this.cooX = cooX;
   }
 }
