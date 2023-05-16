@@ -13,7 +13,7 @@ void setup() {
   for (int i = 0; i<img.length; i++) {
     img[i] = loadImage("Lonicera.png");
   }
-  d = new Doll(100,400);
+  d = new Doll(100,500);
 
   size(1280, 720, P3D);
   rectMode(CENTER);
