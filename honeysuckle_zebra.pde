@@ -13,7 +13,7 @@ void setup() {
   for (int i = 0; i<img.length; i++) {
     img[i] = loadImage("Lonicera.png");
   }
-  d = new Doll(width,height);
+  d = new Doll(100,400);
 
   size(1280, 720, P3D);
   rectMode(CENTER);
@@ -27,7 +27,7 @@ void setup() {
 }
 void draw() {
   background(90, 100, 190);
-  d.drawDoll();
+  
   noStroke();
   fill(c);
   ellipse(1100, 100, 180, 180);
@@ -55,6 +55,8 @@ void draw() {
   house.drawHouse();
   popMatrix();
   c = color(255, 255, 255);
+  
+  d.drawDoll();
   
 }
 
