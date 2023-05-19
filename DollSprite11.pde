@@ -1,11 +1,9 @@
 class Doll {
 
-
   float cooX;
   float cooY;
   color c;
-
-
+  
   Doll(float cooX, float cooY) {
     this.cooX = cooX;
     this.cooY = cooY;

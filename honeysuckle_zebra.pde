@@ -8,6 +8,8 @@ float dollXCoordinate, translate;
 int num;
 color c;
 Doll d;
+float angle2 = 0;
+float scale = 1;
 void setup() {
   img = new PImage[5];
 
@@ -25,7 +27,7 @@ void setup() {
   oscilate = 10;
   num = 2;
   cloud = cloudVector(num, cloudHeight, speed, oscilate);
-  house = new House(1000, 550);
+  house = new House(1000, 550, scale);
   c = color(255, 255, 255);
 }
 void draw() {
@@ -44,7 +46,11 @@ void draw() {
 
   c = color(255, 255, 255);
   d.drawDoll();
-  d.setXCoordinate(translate%width + 700);
+  
+  d.setXCoordinate(dollXCoordinate + 400);
+  
+  house.setScale(scale);
+  
   translate += 5 * cos(oscilate*.2);
   oscilate+=.1;
 }
@@ -103,7 +109,39 @@ void starPlot() {
   c = color(230, 200, 2);
   fill(c);
   translate(80., 100);
-  rotate(frameCount / -100.0);
+  if(angle2 == 1){
+     rotate(frameCount / -100.0);
+  } else {
+    rotate(0);
+  }
   star(0, 0, 30, 70, 5);
   popMatrix();
+}
+
+void keyPressed() {
+  if (key == 'g' || key == 'G') {
+    
+    angle2 = 1;  // Gira
+  } else if (key == 'p' || key == 'P') {
+    
+    angle2 = 0;  // Para
+  } else if (keyCode == LEFT) {
+    
+    // Incrementa o valor da escala
+    scale -= 0.1;
+    dollXCoordinate -= 14;
+    
+    // Limita o valor da escala entre 0 e 1
+    scale = constrain(scale, 1, 2);
+    dollXCoordinate = constrain(dollXCoordinate, 70, 210);
+  } else if (keyCode == RIGHT) {
+    
+    // Incrementa o valor da escala
+    scale += 0.1;
+    dollXCoordinate += 14;
+    
+    // Limita o valor da escala entre 0 e 1
+    scale = constrain(scale, 1, 2);
+    dollXCoordinate = constrain(dollXCoordinate, 70, 210);
+  }
 }
