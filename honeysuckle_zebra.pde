@@ -31,9 +31,7 @@ void setup() {
   oscilate = 10;
   num = 2;
   cloud = cloudVector(num, cloudHeight, speed, oscilate);
-  house = new House(1000, 550, scale);
-  e1 = new Eye(e1X,  500, 10);
-  e2 = new Eye(e2X,  500, 10);
+  house = new House(1000, 550);
   c = color(255, 255, 255);
 }
 void draw() {
@@ -52,20 +50,7 @@ void draw() {
 
   c = color(255, 255, 255);
   d.drawDoll();
-  
-  d.setXCoordinate(dollXCoordinate + 400);
-  
-  house.setScale(scale);
-    
-  e1.update(mouseX, mouseY);
-  e2.update(mouseX, mouseY);
-  
-  e1.display();
-  e2.display();
-  
-  e1.setX(e1X + 450);
-  e2.setX(e2X + 450);
-  
+  d.setXCoordinate(translate%width + 700);
   translate += 5 * cos(oscilate*.2);
   oscilate+=.1;
 }
@@ -131,40 +116,4 @@ void starPlot() {
   }
   star(0, 0, 30, 70, 5);
   popMatrix();
-}
-
-void keyPressed() {
-  if (key == 'g' || key == 'G') {
-    
-    angle2 = 1;  // Gira
-  } else if (key == 'p' || key == 'P') {
-    
-    angle2 = 0;  // Para
-  } else if (keyCode == LEFT) {
-    
-    // Incrementa o valor da escala
-    scale -= 0.05;
-    dollXCoordinate -= 22;
-    e1X -= 22;
-    e2X -= 22;
-    
-    // Limita o valor da escala entre 0 e 1
-    scale = constrain(scale, 1, 1.5);
-    dollXCoordinate = constrain(dollXCoordinate, 100, 320);
-    e1X = constrain(e1X, 40, 260);
-    e2X = constrain(e2X, 60, 280);
-  } else if (keyCode == RIGHT) {
-    
-    // Incrementa o valor da escala
-    scale += 0.05;
-    dollXCoordinate += 22;
-    e1X += 22;
-    e2X += 22;
-    
-    // Limita o valor da escala entre 0 e 1
-    scale = constrain(scale, 1, 1.5);
-    dollXCoordinate = constrain(dollXCoordinate, 100, 320);
-    e1X = constrain(e1X, 40, 260);
-    e2X = constrain(e2X, 60, 280);
-  }
 }
