@@ -1,11 +1,9 @@
 class Doll {
 
-
   float cooX;
   float cooY;
   color c;
-
-
+  
   Doll(float cooX, float cooY) {
     this.cooX = cooX;
     this.cooY = cooY;
@@ -21,6 +19,7 @@ class Doll {
     pushMatrix();
     translate(cooX,cooY);
     ellipse(0,0,40,40); //cabeça
+    
     rect(0,50,40,60); //torso
 
     rect(30,45,15,35);//Braço direito

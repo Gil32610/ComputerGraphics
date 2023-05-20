@@ -5,9 +5,12 @@ int cloudHeight;
 float speed;
 float oscilate;
 float dollXCoordinate, translate;
-int num;
+int num, e1X, e2X;
 color c;
 Doll d;
+Eye e1, e2;
+float angle2 = 0;
+float scale = 1;
 void setup() {
   img = new PImage[5];
 
@@ -15,6 +18,9 @@ void setup() {
     img[i] = loadImage("Lonicera.png");
   }
   dollXCoordinate = 100;
+  e1X = 40;
+  e2X = 60;
+  
   d = new Doll(dollXCoordinate, 500);
   translate =.0;
 
@@ -25,7 +31,9 @@ void setup() {
   oscilate = 10;
   num = 2;
   cloud = cloudVector(num, cloudHeight, speed, oscilate);
-  house = new House(1000, 550);
+  house = new House(1000, 550, scale);
+  e1 = new Eye(e1X,  500, 10);
+  e2 = new Eye(e2X,  500, 10);
   c = color(255, 255, 255);
 }
 void draw() {
@@ -44,7 +52,20 @@ void draw() {
 
   c = color(255, 255, 255);
   d.drawDoll();
-  d.setXCoordinate(translate%width + 700);
+  
+  d.setXCoordinate(dollXCoordinate + 400);
+  
+  house.setScale(scale);
+    
+  e1.update(mouseX, mouseY);
+  e2.update(mouseX, mouseY);
+  
+  e1.display();
+  e2.display();
+  
+  e1.setX(e1X + 450);
+  e2.setX(e2X + 450);
+  
   translate += 5 * cos(oscilate*.2);
   oscilate+=.1;
 }
@@ -103,7 +124,47 @@ void starPlot() {
   c = color(230, 200, 2);
   fill(c);
   translate(80., 100);
-  rotate(frameCount / -100.0);
+  if(angle2 == 1){
+     rotate(frameCount / -100.0);
+  } else {
+    rotate(0);
+  }
   star(0, 0, 30, 70, 5);
   popMatrix();
+}
+
+void keyPressed() {
+  if (key == 'g' || key == 'G') {
+    
+    angle2 = 1;  // Gira
+  } else if (key == 'p' || key == 'P') {
+    
+    angle2 = 0;  // Para
+  } else if (keyCode == LEFT) {
+    
+    // Incrementa o valor da escala
+    scale -= 0.05;
+    dollXCoordinate -= 22;
+    e1X -= 22;
+    e2X -= 22;
+    
+    // Limita o valor da escala entre 0 e 1
+    scale = constrain(scale, 1, 1.5);
+    dollXCoordinate = constrain(dollXCoordinate, 100, 320);
+    e1X = constrain(e1X, 40, 260);
+    e2X = constrain(e2X, 60, 280);
+  } else if (keyCode == RIGHT) {
+    
+    // Incrementa o valor da escala
+    scale += 0.05;
+    dollXCoordinate += 22;
+    e1X += 22;
+    e2X += 22;
+    
+    // Limita o valor da escala entre 0 e 1
+    scale = constrain(scale, 1, 1.5);
+    dollXCoordinate = constrain(dollXCoordinate, 100, 320);
+    e1X = constrain(e1X, 40, 260);
+    e2X = constrain(e2X, 60, 280);
+  }
 }
