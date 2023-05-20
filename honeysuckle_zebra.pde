@@ -1,4 +1,4 @@
-PImage[] img; //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+PImage[] img; //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 Cloud[] cloud;
 House house;
 int cloudHeight;
@@ -20,10 +20,9 @@ void setup() {
   dollXCoordinate = 100;
   e1X = 40;
   e2X = 60;
-  
+
   d = new Doll(dollXCoordinate, 500);
   translate =.0;
-
   size(1280, 720, P3D);
   rectMode(CENTER);
   cloudHeight = 60;
@@ -31,12 +30,13 @@ void setup() {
   oscilate = 10;
   num = 2;
   cloud = cloudVector(num, cloudHeight, speed, oscilate);
-  house = new House(1000, 550);
+  house = new House(1000, 550, scale);
+  e1 = new Eye(e1X,  500, 10);
+  e2 = new Eye(e2X,  500, 10);
   c = color(255, 255, 255);
 }
 void draw() {
   background(90, 100, 190);
-
   noStroke();
   fill(c);
   ellipse(1100, 100, 180, 180);
@@ -44,24 +44,34 @@ void draw() {
   c = color(240, 230, 220);
   fill(c);
   printClouds(cloud);
-
   grassPlot(); //desenha o gramado
   housePlot(house); //desenha a casa
 
   c = color(255, 255, 255);
   d.drawDoll();
-  d.setXCoordinate(translate%width + 700);
+  
+  d.setXCoordinate(dollXCoordinate + 400);
+
+  house.setScale(scale);
+
+  e1.update(mouseX, mouseY);
+  e2.update(mouseX, mouseY);
+
+  e1.display();
+  e2.display();
+
+  e1.setX(e1X + 450);
+  e2.setX(e2X + 450);
+
   translate += 5 * cos(oscilate*.2);
   oscilate+=.1;
 }
-
 public void printClouds(Cloud[] cloud) {
   for (int i =0; i<cloud.length; i++) {
     cloud[i].drawCloud();
     cloud[i].translateCloud();
   }
 }
-
 public  Cloud[] cloudVector(int num, int cloudHeight, float speed, float oscilate) {
   Cloud[] cloud = new Cloud[num];
   for (int i =0; i<cloud.length; i++) {
@@ -72,7 +82,6 @@ public  Cloud[] cloudVector(int num, int cloudHeight, float speed, float oscilat
   }
   return cloud;
 }
-
 void star(float x, float y, float radius1, float radius2, int npoints) {
   float angle = TWO_PI / npoints;
   float halfAngle = angle/2.0;
@@ -87,14 +96,12 @@ void star(float x, float y, float radius1, float radius2, int npoints) {
   }
   endShape(CLOSE);
 }
-
 void housePlot(House house) {
   pushMatrix();
   stroke(0);
   house.drawHouse();
   popMatrix();
 }
-
 void grassPlot() {
   pushMatrix();
   c=color(12, 170, 45);
@@ -102,7 +109,6 @@ void grassPlot() {
   rect(width/2, 650, width, 140);
   popMatrix();
 }
-
 void starPlot() {
   pushMatrix();
   noStroke();
@@ -116,4 +122,40 @@ void starPlot() {
   }
   star(0, 0, 30, 70, 5);
   popMatrix();
+}
+
+void keyPressed() {
+  if (key == 'g' || key == 'G') {
+
+    angle2 = 1;  // Gira
+  } else if (key == 'p' || key == 'P') {
+
+    angle2 = 0;  // Para
+  } else if (keyCode == LEFT) {
+
+    // Incrementa o valor da escala
+    scale -= 0.05;
+    dollXCoordinate -= 22;
+    e1X -= 22;
+    e2X -= 22;
+
+    // Limita o valor da escala entre 0 e 1
+    scale = constrain(scale, 1, 1.5);
+    dollXCoordinate = constrain(dollXCoordinate, 100, 320);
+    e1X = constrain(e1X, 40, 260);
+    e2X = constrain(e2X, 60, 280);
+  } else if (keyCode == RIGHT) {
+
+    // Incrementa o valor da escala
+    scale += 0.05;
+    dollXCoordinate += 22;
+    e1X += 22;
+    e2X += 22;
+
+    // Limita o valor da escala entre 0 e 1
+    scale = constrain(scale, 1, 1.5);
+    dollXCoordinate = constrain(dollXCoordinate, 100, 320);
+    e1X = constrain(e1X, 40, 260);
+    e2X = constrain(e2X, 60, 280);
+  }
 }
