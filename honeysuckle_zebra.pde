@@ -17,8 +17,8 @@ color blue = color(0, 0, 255);
 color green = color(0, 255, 0);
 color yellow = color(255, 255, 0);
 color orange = color(255, 127, 0);
-color red = color(255, 0 , 0);
-color[] rainbow = {violet,indigo,blue,green,yellow,orange,red};
+color red = color(255, 0, 0);
+color[] rainbow = {violet, indigo, blue, green, yellow, orange, red};
 void setup() {
   img = new PImage[5];
 
@@ -39,28 +39,29 @@ void setup() {
   num = 2;
   cloud = cloudVector(num, cloudHeight, speed, oscilate);
   house = new House(1000, 550, scale);
-  e1 = new Eye(e1X,  500, 10);
-  e2 = new Eye(e2X,  500, 10);
+  e1 = new Eye(e1X, 500, 10);
+  e2 = new Eye(e2X, 500, 10);
   c = color(255, 255, 255);
-  
 }
 void draw() {
   background(90, 100, 190);
+  noFill();
+  rainbowPlot();
   noStroke();
   fill(c);
   ellipse(1100, 100, 180, 180);
   starPlot();// desenha a estrela
+  
   c = color(240, 230, 220);
   fill(c);
   printClouds(cloud);
-  noFill();
-  rainbowPlot();
   grassPlot(); //desenha o gramado
   housePlot(house); //desenha a casa
 
+
   c = color(255, 255, 255);
   d.drawDoll();
-  
+
   d.setXCoordinate(dollXCoordinate + 400);
 
   house.setScale(scale);
@@ -76,6 +77,7 @@ void draw() {
 
   translate += 5 * cos(oscilate*.2);
   oscilate+=.1;
+  
 }
 public void printClouds(Cloud[] cloud) {
   for (int i =0; i<cloud.length; i++) {
@@ -109,7 +111,6 @@ void star(float x, float y, float radius1, float radius2, int npoints) {
 }
 void housePlot(House house) {
   pushMatrix();
-  stroke(0);
   house.drawHouse();
   popMatrix();
 }
@@ -126,8 +127,8 @@ void starPlot() {
   c = color(230, 200, 2);
   fill(c);
   translate(80., 100);
-  if(angle2 == 1){
-     rotate(frameCount / -100.0);
+  if (angle2 == 1) {
+    rotate(frameCount / -100.0);
   } else {
     rotate(0);
   }
@@ -171,17 +172,17 @@ void keyPressed() {
   }
 }
 
-  void rainbowPlot(){
-    pushMatrix();
-    strokeWeight(20);
-    strokeCap(SQUARE);
-   
-  for (int i = 0; i< 7; i++){ 
+void rainbowPlot() {
+  pushMatrix();
+  strokeWeight(20);
+  strokeCap(SQUARE);
+
+  for (int i = 0; i< 7; i++) {
     stroke(rainbow[i]);
-    bezier(20 + 10*i, 500 + 10*i,mouseX, mouseY + (i*15), mouseX, mouseY + (i*15), 1200 - 10 * i,500 + 10*i);
+    bezier(20 + 10*i, 500 + 10*i, mouseX, mouseY + (i*15), mouseX, mouseY + (i*15), 1200 - 10 * i, 500 + 10*i);
     noFill();
-}
+  }
   strokeWeight(1);
   stroke(0);
   popMatrix();
-  }
+}

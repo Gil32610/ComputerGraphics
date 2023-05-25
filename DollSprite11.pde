@@ -11,10 +11,8 @@ class Doll {
   }
 
   public void drawDoll() {
-    
     ellipseMode(CENTER);
     rectMode(CENTER);
-    stroke(0);
     fill(c);
     pushMatrix();
     translate(cooX,cooY);
