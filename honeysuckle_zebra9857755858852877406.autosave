@@ -1,4 +1,4 @@
-PImage[] img; //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+PImage[] img; //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 Cloud[] cloud;
 House house;
 int cloudHeight;
@@ -42,7 +42,6 @@ void setup() {
   e1 = new Eye(e1X,  500, 10);
   e2 = new Eye(e2X,  500, 10);
   c = color(255, 255, 255);
-  
 }
 void draw() {
   background(90, 100, 190);
@@ -53,7 +52,6 @@ void draw() {
   c = color(240, 230, 220);
   fill(c);
   printClouds(cloud);
-  noFill();
   rainbowPlot();
   grassPlot(); //desenha o gramado
   housePlot(house); //desenha a casa
@@ -169,7 +167,6 @@ void keyPressed() {
     e1X = constrain(e1X, 40, 260);
     e2X = constrain(e2X, 60, 280);
   }
-}
 
   void rainbowPlot(){
     pushMatrix();
@@ -178,10 +175,7 @@ void keyPressed() {
    
   for (int i = 0; i< 7; i++){ 
     stroke(rainbow[i]);
-    bezier(20 + 10*i, 500 + 10*i,mouseX, mouseY + (i*15), mouseX, mouseY + (i*15), 1200 - 10 * i,500 + 10*i);
-    noFill();
-}
-  strokeWeight(1);
-  stroke(0);
+    bezier(20 + 10*i, 300 + 10*i,mouseX, mouseY + (i*15), mouseX, mouseY + (i*15), 1200 - 10 * i, 300 + 10*i);
+  }
   popMatrix();
   }
