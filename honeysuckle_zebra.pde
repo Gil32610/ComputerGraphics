@@ -46,10 +46,10 @@ void setup() {
 }
 void draw() {
   background(90, 100, 190);
-  rainbowPlot();
   noStroke();
   fill(c);
   ellipse(1100, 100, 180, 180);
+  rainbowPlot();
   starPlot();// desenha a estrela
   
   c = color(240, 230, 220);
