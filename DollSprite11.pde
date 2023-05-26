@@ -11,6 +11,7 @@ class Doll {
   }
 
   public void drawDoll() {
+    stroke(0);
     ellipseMode(CENTER);
     rectMode(CENTER);
     fill(c);
@@ -26,6 +27,7 @@ class Doll {
     rect(10,102,15,40);//Perna direita
     rect(-10,102,15,40);//Perna esquerda
     popMatrix();
+    noStroke();
 
     // Cabeça
     // ellipse(cooX/2, cooY/3.5, 40, 40);

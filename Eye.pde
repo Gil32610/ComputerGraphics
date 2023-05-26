@@ -17,7 +17,7 @@ public class Eye {
   }
   
   public void display(){
-    
+    stroke(0);
     ellipseMode(CENTER);
     pushMatrix();
     translate(x, y);
@@ -27,6 +27,7 @@ public class Eye {
     fill(153, 204, 0);
     ellipse(size/4, 0, size/2, size/2);
     popMatrix();
+    noStroke();
   }
   
   public void setX(int x){

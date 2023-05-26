@@ -18,7 +18,8 @@ color green = color(0, 255, 0);
 color yellow = color(255, 255, 0);
 color orange = color(255, 127, 0);
 color red = color(255, 0, 0);
-color[] rainbow = {violet, indigo, blue, green, yellow, orange, red};
+color backGround = color(90, 100, 190);
+color[] rainbow = {violet, indigo, blue, green, yellow, orange, red, backGround};
 void setup() {
   img = new PImage[5];
 
@@ -45,7 +46,6 @@ void setup() {
 }
 void draw() {
   background(90, 100, 190);
-  noFill();
   rainbowPlot();
   noStroke();
   fill(c);
@@ -110,9 +110,11 @@ void star(float x, float y, float radius1, float radius2, int npoints) {
   endShape(CLOSE);
 }
 void housePlot(House house) {
+  stroke(0);
   pushMatrix();
   house.drawHouse();
   popMatrix();
+  noStroke();
 }
 void grassPlot() {
   pushMatrix();
@@ -174,13 +176,12 @@ void keyPressed() {
 
 void rainbowPlot() {
   pushMatrix();
-  strokeWeight(20);
+  noStroke();
   strokeCap(SQUARE);
 
-  for (int i = 0; i< 7; i++) {
-    stroke(rainbow[i]);
-    bezier(20 + 10*i, 500 + 10*i, mouseX, mouseY + (i*15), mouseX, mouseY + (i*15), 1200 - 10 * i, 500 + 10*i);
-    noFill();
+  for (int i = 0; i< 8; i++) {
+    fill(rainbow[i]);
+    bezier(20 + 10*i, 620 + 12*i, mouseX, mouseY + (i*15), mouseX, mouseY + (i*15), 1200 - 10 * i, 620 + 12*i);
   }
   strokeWeight(1);
   stroke(0);
