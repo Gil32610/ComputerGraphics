@@ -1,4 +1,6 @@
-PImage[] img; //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+import processing.core.*; //<>//
+
+PImage[] img; //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 Cloud[] cloud;
 House house;
 int cloudHeight;
@@ -20,6 +22,11 @@ color orange = color(255, 127, 0);
 color red = color(255, 0, 0);
 color backGround = color(90, 100, 190);
 color[] rainbow = {violet, indigo, blue, green, yellow, orange, red, backGround};
+
+float angle = 0;
+float sunRadius = 120;
+boolean raysActivation = false;
+
 void setup() {
   img = new PImage[5];
 
@@ -48,7 +55,6 @@ void draw() {
   background(90, 100, 190);
   noStroke();
   fill(c);
-  ellipse(1100, 100, 180, 180);
   rainbowPlot();
   starPlot();// desenha a estrela
   
@@ -78,6 +84,13 @@ void draw() {
   translate += 5 * cos(oscilate*.2);
   oscilate+=.1;
   
+  // Desenho em 3D
+  
+  sunPlot();
+  if(raysActivation){
+    
+    raysPlot();
+  }
 }
 public void printClouds(Cloud[] cloud) {
   for (int i =0; i<cloud.length; i++) {
@@ -137,6 +150,48 @@ void starPlot() {
   star(0, 0, 30, 70, 5);
   popMatrix();
 }
+void rainbowPlot() {
+  pushMatrix();
+  noStroke();
+  strokeCap(SQUARE);
+
+  for (int i = 0; i< 8; i++) {
+    fill(rainbow[i]);
+    bezier(20 + 10*i, 620 + 12*i, mouseX, mouseY + (i*15), mouseX, mouseY + (i*15), 1200 - 10 * i, 620 + 12*i);
+  }
+  strokeWeight(1);
+  stroke(0);
+  popMatrix();
+}
+void sunPlot(){
+
+  lights(); // Ativa a iluminação 3D
+  
+  translate(width - sunRadius, sunRadius, -300); // Move a câmera para uma posição adequada
+  rotateX(radians(120));
+  
+  fill(255, 255, 0);   // Define a cor do sol
+  
+  sphere(sunRadius);   // Desenha o sol
+  
+  rotateY(angle);   // Rotaciona o sol
+  angle += 0.01; 
+}  
+void raysPlot(){
+  
+    int numRays = 20;
+    float angleIncrement = 360.0 / numRays;
+    float rayLength = sunRadius * 2;
+  
+    stroke(255, 255, 0);
+    strokeWeight(2);
+  
+    for (float a = 0; a < 360; a += angleIncrement) {
+      float x = cos(radians(a)) * rayLength;
+      float y = sin(radians(a)) * rayLength;
+      line(0, 0, x, y);
+    } 
+}  
 
 void keyPressed() {
   if (key == 'g' || key == 'G') {
@@ -171,19 +226,12 @@ void keyPressed() {
     dollXCoordinate = constrain(dollXCoordinate, 100, 320);
     e1X = constrain(e1X, 40, 260);
     e2X = constrain(e2X, 60, 280);
-  }
+  }  
 }
 
-void rainbowPlot() {
-  pushMatrix();
-  noStroke();
-  strokeCap(SQUARE);
-
-  for (int i = 0; i< 8; i++) {
-    fill(rainbow[i]);
-    bezier(20 + 10*i, 620 + 12*i, mouseX, mouseY + (i*15), mouseX, mouseY + (i*15), 1200 - 10 * i, 620 + 12*i);
+void mousePressed() {
+  if (mouseButton == LEFT) {
+    
+    raysActivation = !raysActivation;
   }
-  strokeWeight(1);
-  stroke(0);
-  popMatrix();
 }
