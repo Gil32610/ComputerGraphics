@@ -1,4 +1,5 @@
 public class Cloud {
+  
   private float cooX;
   private float cooY;
   private float speed;

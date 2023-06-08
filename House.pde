@@ -1,4 +1,5 @@
 public class House {
+  
   private float coordinateX;
   private float coordinateY;
   private float scale;
