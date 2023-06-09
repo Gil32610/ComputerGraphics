@@ -86,6 +86,7 @@ void draw() {
   
   // Desenho em 3D
   
+  lightPolePlot();
   sunPlot();
   if(raysActivation){
     
@@ -165,7 +166,11 @@ void rainbowPlot() {
 }
 void sunPlot(){
 
+  noStroke();
+  
   lights(); // Ativa a iluminação 3D
+  
+  //directionalLight(255, 255, 255, 1, -0.7, -1);
   
   translate(width - sunRadius, sunRadius, -300); // Move a câmera para uma posição adequada
   rotateX(radians(120));
@@ -191,6 +196,21 @@ void raysPlot(){
       float y = sin(radians(a)) * rayLength;
       line(0, 0, x, y);
     } 
+}  
+void lightPolePlot(){
+  
+  noFill();
+  stroke(0, 0, 0);
+  bezier(200, 610, 200, 410, 200, 410, 300, 410);           // Cria a curva entre o pilar e a haste do poste;
+  fill(0, 0, 0);
+  quad(200, 610, 200, 400, 190, 400, 190, 610);
+  quad(200, 400, 300, 400, 300, 410, 200, 410);
+  fill(255, 255, 0);
+  circle(280, 420, 20);
+
+  // Desenha a base retangular do poste
+  fill(127, 127, 127);
+  rect(200, 620, 70, 20);
 }  
 
 void keyPressed() {
